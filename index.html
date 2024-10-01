@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Carteiras de Couro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <h1>Bem-vindo à Nossa Loja de Carteiras de Couro</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="produto.html">Produtos</a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="wallet" onclick="abrirCarrinho()">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAMhJREFUSEvt1DEOAUEUxvGfRK0kkWi4gFs4iUolUZA4gwM4CIlb0OioFFoXIJssZjc2YseqTDeT+d7/vfe9mZqKV63i+H4KSGBzjNAqUdkeE6xCbVjBAuMSgUPJAb0iwBlNDLApAbqmmkzbw839QuWAEslnJBkvXlVwQSOS8vDiFSB2dDNe/AGJVfnx/HqL/oCPX8TXPchnUAg4oY0+th/n/RQUApYYRgQOpUd0k4PwJdcxSyGdCNAOU6zzgIiYxdLYj+1tUpUDbgOALxmvJD5dAAAAAElFTkSuQmCC" alt="Carrinho" width="20" height="20">
+                    Carrinho
+                </button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Produtos em Destaque</h2>
+            <div class="produto">
+                <img src="img/carteira1.jpeg" alt="Carteira de Couro 1">
+                <h3>Carteira de Couro Masculina Marrom</h3>
+                <p>R$35,00</p>
+                <button data-id="1" class="addCar">Adicionar ao Carrinho</button>
+            </div>
+            <div class="produto">
+                <img src="img/carteira2.webp" alt="Carteira de Couro 2" class="imagem-pequena">
+                <h3>Carteira de Couro Masculina Preta Especial</h3>
+                <p>R$35,00</p>
+                <button data-id="2" class="addCar">Adicionar ao Carrinho</button>
+            </div>
+        </section>
+    </main>
+ 
+
+    <div id="carrinho-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharCarrinho()">×</span>
+            <h2>Carrinho de Compras</h2>
+            <div id="carrinho-itens"></div>
+            <div id="carrinho-total"></div>
+            <button id="limpar-carrinho" onclick="limparCarrinho()">Limpar Carrinho</button>
+            <button id="confirmar-compra">Confirmar Compra</button>
+        </div>
+    </div>
+
+    <div id="mensagem-confirmacao" class="mensagem-confirmacao">
+        Produto confirmado no carrinho!
+    </div>
+    
+   <footer>
+        <p>© 2024 BaconComFritas</p>
+    </footer>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
