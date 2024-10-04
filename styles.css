@@ -92,7 +92,11 @@ main {
 }
 
 #Marca {
+    font-family: 'Jura', sans-serif;
     text-align: center;
+    letter-spacing: 25px;
+    font-size: 40px;
+
 }
 
 .produto:hover {
@@ -106,13 +110,14 @@ main {
 }
 
 footer {
-    background-color: #222;
-    color: #fff;
+    flex-shrink: 0;
+    background-color: transparent;
+    padding: 20px;
     text-align: center;
-    padding: 0.5rem; 
-    font-size: 0.8rem;
-    position: relative;
+    position: fixed;
+    bottom: 0;
     width: 100%;
+    color: #fff;
 }
 
 .imagem-pequena {
@@ -134,7 +139,7 @@ footer {
 }
 
 .modal-content {
-    background-color: #fefefe; 
+    background-color: black; 
     margin: 5% auto; 
     padding: 20px;
     border: 1px solid #888;
