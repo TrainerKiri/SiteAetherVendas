@@ -1,8 +1,78 @@
-let carrinho = [];
+document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.getElementById('cookie-consent-banner');
+    const aceitarBtn = document.getElementById('aceitar-cookies');
+    const recusarBtn = document.getElementById('recusar-cookies');
+
+    // Verifica se o consentimento já foi dado
+    if (!getCookie('cookieConsent')) {
+        banner.style.display = 'block'; // Exibe o banner
+    }
+
+    // Aceitar cookies
+    aceitarBtn.addEventListener('click', () => {
+        setCookie('cookieConsent', 'aceito', 30); // Armazena consentimento por 30 dias
+        banner.style.display = 'none'; // Esconde o banner
+    });
+
+    // Recusar cookies
+    recusarBtn.addEventListener('click', () => {
+        setCookie('cookieConsent', 'recusado', 30); // Armazena recusa por 30 dias
+        banner.style.display = 'none'; // Esconde o banner
+    });
+});
+
+// Função para definir um cookie
+function setCookie(nome, valor, dias) {
+    const dataExpiracao = new Date();
+    dataExpiracao.setTime(dataExpiracao.getTime() + (dias * 24 * 60 * 60 * 1000));
+    const expira = "expires=" + dataExpiracao.toUTCString();
+    document.cookie = nome + "=" + valor + ";" + expira + ";path=/";
+}
+
+// Função para ler um cookie
+function getCookie(nome) {
+    const nomeEQ = nome + "=";
+    const partes = document.cookie.split(';');
+    for (let i = 0; i < partes.length; i++) {
+        let parte = partes[i];
+        while (parte.charAt(0) == ' ') parte = parte.substring(1, parte.length);
+        if (parte.indexOf(nomeEQ) == 0) return parte.substring(nomeEQ.length, parte.length);
+    }
+    return null;
+}
+
+
+
+
+
+let carrinho = JSON.parse(getCookie('carrinho')) || [];
 const produtos = [
     { id: '1', nome: 'Carteira de Couro marrom', preco: 35.00 },
     { id: '2', nome: 'Carteira de Couro preta especial', preco: 35.00 }
 ];
+
+// Função para definir um cookie
+function setCookie(nome, valor, dias) {
+    const dataExpiracao = new Date();
+    dataExpiracao.setTime(dataExpiracao.getTime() + (dias * 24 * 60 * 60 * 1000));
+    const expira = "expires=" + dataExpiracao.toUTCString();
+    document.cookie = nome + "=" + valor + ";" + expira + ";path=/";
+}
+
+// Função para ler um cookie
+function getCookie(nome) {
+    const nomeEQ = nome + "=";
+    const partes = document.cookie.split(';');
+    for (let i = 0; i < partes.length; i++) {
+        let parte = partes[i];
+        while (parte.charAt(0) == ' ') parte = parte.substring(1, parte.length);
+        if (parte.indexOf(nomeEQ) == 0) return parte.substring(nomeEQ.length, parte.length);
+    }
+    return null;
+}
+
+// Carregar o carrinho ao iniciar a página
+exibirCarrinho();
 
 // Função para abrir o modal do carrinho
 function abrirCarrinho() {
@@ -29,6 +99,7 @@ function adicionarAoCarrinho(idProduto) {
     if (produto) {
         carrinho.push(produto);
         console.log('Produto adicionado:', produto);
+        setCookie('carrinho', JSON.stringify(carrinho), 7); // Atualiza o cookie
         exibirCarrinho();
     }
 }
@@ -57,6 +128,7 @@ function exibirCarrinho() {
 // Limpar o carrinho
 function limparCarrinho() {
     carrinho = [];
+    setCookie('carrinho', JSON.stringify(carrinho), 7); // Atualiza o cookie
     exibirCarrinho();
 }
 
